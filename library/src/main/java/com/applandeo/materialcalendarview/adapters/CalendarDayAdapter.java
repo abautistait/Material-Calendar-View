@@ -118,9 +118,7 @@ class CalendarDayAdapter extends ArrayAdapter<Date> {
     }
 
     private boolean isCurrentMonthDay(Calendar day) {
-        return day.get(Calendar.MONTH) == mPageMonth &&
-                !((mCalendarProperties.getMinimumDate() != null && day.before(mCalendarProperties.getMinimumDate()))
-                        || (mCalendarProperties.getMaximumDate() != null && day.after(mCalendarProperties.getMaximumDate())));
+        return day.get(Calendar.MONTH) == mPageMonth;
     }
 
     private boolean isActiveDay(Calendar day) {
@@ -140,7 +138,7 @@ class CalendarDayAdapter extends ArrayAdapter<Date> {
 
             // If a day doesn't belong to current month then image is transparent
             if (!isCurrentMonthDay(day) || !isActiveDay(day)) {
-                dayIcon.setAlpha(0.12f);
+                dayIcon.setAlpha(0);
             }
 
         });
