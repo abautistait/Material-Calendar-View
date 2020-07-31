@@ -113,11 +113,14 @@ public class CalendarPageAdapter extends PagerAdapter {
         // Get Calendar object instance
         Calendar calendar = (Calendar) mCalendarProperties.getFirstPageCalendarDate().clone();
 
+        // calendar.set();
+        int currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
+
         // Add months to Calendar (a number of months depends on ViewPager position)
         calendar.add(Calendar.MONTH, position);
 
         // Set day of month as 1
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
+       calendar.set(Calendar.DAY_OF_MONTH, 1);
 
         // Get a number of the first day of the week
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
@@ -126,15 +129,23 @@ public class CalendarPageAdapter extends PagerAdapter {
         int firstDayOfWeek = calendar.getFirstDayOfWeek();
         int monthBeginningCell = (dayOfWeek < firstDayOfWeek ? 7 : 0) + dayOfWeek - firstDayOfWeek;
 
+        Calendar c = Calendar.getInstance();
+
         // Subtract a number of beginning days, it will let to load a part of a previous month
-        calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
+       calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
 
         /*
         Get all days of one page (42 is a number of all possible cells in one page
         (a part of previous month, current month and a part of next month))
          */
-        while (days.size() < 42) {
-            days.add(calendar.getTime());
+        int count = 0;
+        while (count < 42) {
+            if(calendar.get(Calendar.WEEK_OF_YEAR) == currentWeek || calendar.get(Calendar.WEEK_OF_YEAR) == currentWeek + 1) {
+                days.add(calendar.getTime());
+            }
+
+            count++;
+
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
 

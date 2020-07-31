@@ -74,12 +74,6 @@ class CalendarDayAdapter extends ArrayAdapter<Date> {
     }
 
     private void setLabelColors(TextView dayLabel, Calendar day) {
-        // Setting not current month day color
-        if (!isCurrentMonthDay(day)) {
-            DayColorsUtils.setDayColors(dayLabel, mCalendarProperties.getAnotherMonthsDaysLabelsColor(),
-                    Typeface.NORMAL, R.drawable.background_transparent);
-            return;
-        }
 
         // Setting view for all SelectedDays
         if (isSelectedDay(day)) {
@@ -109,16 +103,12 @@ class CalendarDayAdapter extends ArrayAdapter<Date> {
     }
 
     private boolean isSelectedDay(Calendar day) {
-        return mCalendarProperties.getCalendarType() != CalendarView.CLASSIC && day.get(Calendar.MONTH) == mPageMonth
+        return mCalendarProperties.getCalendarType() != CalendarView.CLASSIC
                 && mCalendarPageAdapter.getSelectedDays().contains(new SelectedDay(day));
     }
 
     private boolean isEventDayWithLabelColor(Calendar day) {
         return EventDayUtils.isEventDayWithLabelColor(day, mCalendarProperties);
-    }
-
-    private boolean isCurrentMonthDay(Calendar day) {
-        return day.get(Calendar.MONTH) == mPageMonth;
     }
 
     private boolean isActiveDay(Calendar day) {
@@ -135,11 +125,6 @@ class CalendarDayAdapter extends ArrayAdapter<Date> {
                 eventDate.getCalendar().equals(day)).findFirst().executeIfPresent(eventDay -> {
 
             ImageUtils.loadImage(dayIcon, eventDay.getImageDrawable());
-
-            // If a day doesn't belong to current month then image is transparent
-            if (!isCurrentMonthDay(day) || !isActiveDay(day)) {
-                dayIcon.setAlpha(0);
-            }
 
         });
     }

@@ -80,7 +80,7 @@ public class DayRowClickListener implements AdapterView.OnItemClickListener {
     private void selectManyDays(View view, Calendar day) {
         TextView dayLabel = (TextView) view.findViewById(R.id.dayLabel);
 
-        if (isCurrentMonthDay(day) && isActiveDay(day)) {
+     if (isActiveDay(day)) {
             SelectedDay selectedDay = new SelectedDay(dayLabel, day);
 
             if (!mCalendarPageAdapter.getSelectedDays().contains(selectedDay)) {
@@ -90,7 +90,7 @@ public class DayRowClickListener implements AdapterView.OnItemClickListener {
             }
 
             mCalendarPageAdapter.addSelectedDay(selectedDay);
-        }
+      }
     }
 
     private void selectRange(View view, Calendar day) {
