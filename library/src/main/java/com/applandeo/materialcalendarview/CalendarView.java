@@ -177,11 +177,6 @@ public class CalendarView extends LinearLayout {
         boolean swipeEnabled = typedArray.getBoolean(R.styleable.CalendarView_swipeEnabled, true);
         mCalendarProperties.setSwipeEnabled(swipeEnabled);
 
-        Drawable previousButtonSrc = typedArray.getDrawable(R.styleable.CalendarView_previousButtonSrc);
-        mCalendarProperties.setPreviousButtonSrc(previousButtonSrc);
-
-        Drawable forwardButtonSrc = typedArray.getDrawable(R.styleable.CalendarView_forwardButtonSrc);
-        mCalendarProperties.setForwardButtonSrc(forwardButtonSrc);
     }
 
     private void initAttributes() {
@@ -201,10 +196,6 @@ public class CalendarView extends LinearLayout {
                 mCalendarProperties.getFirstPageCalendarDate().getFirstDayOfWeek());
 
         AppearanceUtils.setPagesColor(getRootView(), mCalendarProperties.getPagesColor());
-
-        AppearanceUtils.setPreviousButtonImage(getRootView(), mCalendarProperties.getPreviousButtonSrc());
-
-        AppearanceUtils.setForwardButtonImage(getRootView(), mCalendarProperties.getForwardButtonSrc());
 
         mViewPager.setSwipeEnabled(mCalendarProperties.getSwipeEnabled());
 

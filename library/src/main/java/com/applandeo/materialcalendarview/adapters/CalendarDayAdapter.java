@@ -73,8 +73,18 @@ class CalendarDayAdapter extends ArrayAdapter<Date> {
         return view;
     }
 
-    private void setLabelColors(TextView dayLabel, Calendar day) {
+    private boolean isCurrentMonthDay(Calendar day) {
+        return  !((mCalendarProperties.getMinimumDate() != null && day.before(mCalendarProperties.getMinimumDate()))
+                        || (mCalendarProperties.getMaximumDate() != null && day.after(mCalendarProperties.getMaximumDate())));
+    }
 
+    private void setLabelColors(TextView dayLabel, Calendar day) {
+        // Setting not current month day color
+        if (!isCurrentMonthDay(day)) {
+            DayColorsUtils.setDayColors(dayLabel, mCalendarProperties.getAnotherMonthsDaysLabelsColor(),
+                    Typeface.NORMAL, R.drawable.background_transparent);
+            return;
+        }
         // Setting view for all SelectedDays
         if (isSelectedDay(day)) {
             Stream.of(mCalendarPageAdapter.getSelectedDays())

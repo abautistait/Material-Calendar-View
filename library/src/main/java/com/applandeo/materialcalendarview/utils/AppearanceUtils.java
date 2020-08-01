@@ -99,8 +99,8 @@ public final class AppearanceUtils {
     }
 
     public static void setNavigationVisibility(View view, int visibility) {
-        view.findViewById(R.id.previousButton).setVisibility(visibility);
-        view.findViewById(R.id.forwardButton).setVisibility(visibility);
+        //view.findViewById(R.id.previousButton).setVisibility(visibility);
+        //view.findViewById(R.id.forwardButton).setVisibility(visibility);
     }
 
     public static void setAbbreviationsBarVisibility(View view, int visibility) {
