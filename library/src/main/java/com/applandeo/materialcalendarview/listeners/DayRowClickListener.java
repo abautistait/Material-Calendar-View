@@ -148,7 +148,7 @@ public class DayRowClickListener implements AdapterView.OnItemClickListener {
     }
 
     private boolean isCurrentMonthDay(Calendar day) {
-        return day.get(Calendar.MONTH) == mPageMonth && isBetweenMinAndMax(day);
+        return isBetweenMinAndMax(day);
     }
 
     private boolean isActiveDay(Calendar day) {
